@@ -162,6 +162,28 @@ def exist_url_wipe_repeat(root_path, url_list, add_sign=False, layer_num=4):
             url_no_exist_list.append(url)
     return url_no_exist_list
 
+def path_file_transfer(source_path, target_path):
+    '''
+    将source_path路径下的所有目录及文件转移到target_path路径下
+    '''
+    if not os.path.exists(source_path):
+        return False
+    timestamp_dirs = os.listdir(source_path)
+    for timestamp_dir in timestamp_dirs:
+        source_web_timestamp_path = pjoin(source_path, timestamp_dir)
+        target_web_timestamp_path = pjoin(target_path, timestamp_dir)
+        try:
+            if os.path.isdir(source_web_timestamp_path):
+                shutil.copytree(source_web_timestamp_path,
+                                target_web_timestamp_path)
+            elif os.path.isfile(source_web_timestamp_path):
+                shutil.copyfile(source_web_timestamp_path,
+                                target_web_timestamp_path)
+        except OSError:
+            # 说明 target_web_timestamp_path 已经存在
+            pass
+    return True
+
 
 if __name__ == '__main__':
     # 根据url_list，读取web_info中指定URL对应的main.html路径
