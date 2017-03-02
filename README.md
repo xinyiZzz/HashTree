@@ -15,7 +15,7 @@ Create a hash tree based on the URL for local storage and retrieval of web page 
 并解决了无法直接用URL作为目录名称的问题，即用域名和URL哈希值共同作为目录名称
 
 ## Use examples/使用范例
-
+'''
 root_path = '/home/phishing/phishing_check'
 layer_num = 4
 
@@ -31,7 +31,7 @@ print get_latest_timestamp_dir_name(web_save_path_abs)
 a = get_hash_dir_info(root_path, layer_num)
 for i in a:
   print i, a[i]
-
+'''
 
 ## contact/联系方式
 
